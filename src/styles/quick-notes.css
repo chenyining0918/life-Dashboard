@@ -1,0 +1,88 @@
+/* src/styles/quick-notes.css  (在 global.css 之后引入即可) */
+.qn-shell{
+  position:fixed;
+  inset:0;
+  display:flex;
+  background:var(--bg);
+  color:var(--text);
+  z-index:1000;
+  font-family:'Inter',sans-serif;
+}
+
+/* 左侧栏 */
+.qn-sidebar{
+  width:300px;
+  background:var(--bg-trans);
+  backdrop-filter:blur(12px);
+  border-right:1px solid #0002;
+  display:flex;
+  flex-direction:column;
+  padding:1rem;
+  gap:.75rem;
+  overflow-y:auto;
+}
+.qn-sidebar-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.close-btn{
+  background:none;
+  color:var(--text);
+  font-size:1.2rem;
+  padding:.25rem .5rem;
+}
+.qn-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.qn-item{
+  padding:.5rem .75rem;
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:background var(--transition);
+}
+.qn-item:hover{background:rgba(0,0,0,.05);}
+.dark .qn-item:hover{background:rgba(255,255,255,.07);}
+.qn-item.active{
+  background:var(--primary);
+  color:#fff;
+}
+.qn-item .title{font-weight:600;font-size:.95rem;}
+.qn-item .date{font-size:.75rem;opacity:.7;}
+
+/* 右侧编辑器 */
+.qn-editor{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:2rem;
+  overflow-y:auto;
+}
+.qn-title{
+  font-size:1.75rem;
+  margin-bottom:1rem;
+  border:none;
+  border-bottom:1px solid #0002;
+  background:transparent;
+  color:var(--text);
+}
+.qn-title:focus{border-bottom-color:var(--primary);}
+.qn-editor-wrapper{
+  flex:1;
+  border:1px solid #0002;
+  border-radius:var(--radius);
+  padding:1rem;
+  background:var(--bg-secondary);
+}
+.qn-editor-content{min-height:100%;outline:none;}
+.qn-toolbar{margin-top:auto;text-align:right;padding-top:1rem;}
+
+/* 空态 */
+.qn-empty{
+  flex:1;
+  display:grid;
+  place-items:center;
+  color:var(--text-secondary);
+}

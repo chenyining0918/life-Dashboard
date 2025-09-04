@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap');
+@import './theme.css';
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{line-height:1.2}
+button,input,textarea{
+  font:inherit;
+  border:none;
+  border-radius:var(--radius);
+  outline:none;
+  transition:var(--transition);
+}
+button{
+  cursor:pointer;
+  padding:.5rem .75rem;
+  background:var(--primary);
+  color:#fff;
+  box-shadow:var(--shadow-sm);
+}
+button:hover{box-shadow:var(--shadow)}
+input,textarea{
+  background:var(--bg-secondary);
+  border:1px solid #0002;
+  padding:.5rem .75rem;
+  color:var(--text);
+}
+input:focus,textarea:focus{border-color:var(--primary)}
+.container{
+  max-width:var(--max-width);
+  margin-inline:auto;
+  padding:var(--gap);
+}
+.card{
+  background:var(--bg-secondary);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:var(--gap);
+}

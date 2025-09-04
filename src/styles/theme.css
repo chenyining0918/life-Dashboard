@@ -1,0 +1,13 @@
+:root{
+  /* ===== 新增浅绿底色 ===== */
+  --bg:            #f0f7f0;      /* 原来是 #fafbfc */
+  --bg-secondary:  #e6f3e6;      /* 卡片稍深一点 */
+  --bg-trans:      rgba(230,243,230,.7);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:            #0b1f0b;      /* 暗黑墨绿 */
+    --bg-secondary:  #1a2e1a;
+    --bg-trans:      rgba(26,46,26,.7);
+  }
+}
