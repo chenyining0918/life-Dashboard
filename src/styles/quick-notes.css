@@ -86,3 +86,29 @@
   place-items:center;
   color:var(--text-secondary);
 }
+/* 左侧栏收起状态 */
+.qn-sidebar.collapsed{
+  width:48px;               /* 只留一条窄栏 */
+  padding:.5rem .25rem;
+}
+.qn-sidebar.collapsed .qn-sidebar-header h2,
+.qn-sidebar.collapsed .btn.primary,
+.qn-sidebar.collapsed .qn-list{
+  display:none;
+}
+/* 收起/展开按钮 */
+.toggle-btn{
+  background:none;
+  color:var(--text);
+  font-size:1.2rem;
+  padding:.25rem .5rem;
+  margin-bottom:.5rem;
+}
+
+/* 右侧编辑器占满剩余空间，并可上下滚动 */
+.qn-editor{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;          /* 关键：允许上下滑动 */
+}
