@@ -23,7 +23,8 @@ const ToolbarBtn = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
 export default function QuickNotes({ onClose }: { onClose: () => void }) {
   const [notes, setNotes] = useState<Note[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
-
+  const [collapsed, setCollapsed] = useState(false);
+  
   /* ---------- 实时订阅 ---------- */
   useEffect(() => {
     refresh();
@@ -87,51 +88,40 @@ export default function QuickNotes({ onClose }: { onClose: () => void }) {
   return (
     <div className="qn-shell">
       {/* 左侧列表栏 */}
-      <aside className="qn-sidebar">
+      <aside className={`qn-sidebar ${collapsed ? 'collapsed' : ''}`}>
         <div className="qn-sidebar-header">
-          <h2>Quick Notes</h2>
+          {!collapsed && <h2>Quick Notes</h2>}
           <button onClick={onClose} className="close-btn">✕</button>
         </div>
 
-        <button className="btn primary" onClick={createNote}>＋ 新建随笔</button>
+        {/* 收起 / 展开 按钮 */}
+        <button className="toggle-btn" onClick={() => setCollapsed(c => !c)}>
+          {collapsed ? '→' : '←'}
+        </button>
 
-        <ul className="qn-list">
-          {notes.map((n) => (
-            <li
-              key={n.id}
-              className={`qn-item ${n.id === activeId ? 'active' : ''}`}
-              onClick={() => setActiveId(n.id)}
-            >
-              <div className="title">{n.title || '未命名'}</div>
-              <div className="date">{new Date(n.updated_at).toLocaleString()}</div>
-            </li>
-          ))}
-        </ul>
+        {!collapsed && (
+          <>
+            <button className="btn primary" onClick={createNote}>＋ 新建随笔</button>
+            <ul className="qn-list">
+              {notes.map((n) => (
+                <li
+                  key={n.id}
+                  className={`qn-item ${n.id === activeId ? 'active' : ''}`}
+                  onClick={() => setActiveId(n.id)}
+                >
+                  <div className="title">{n.title || '未命名'}</div>
+                  <div className="date">{new Date(n.updated_at).toLocaleString()}</div>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </aside>
 
       {/* 右侧编辑器 */}
       {activeNote ? (
         <main className="qn-editor">
-          <input
-            className="qn-title"
-            defaultValue={activeNote.title}
-            onBlur={(e) => saveTitle(e.target.value)}
-            placeholder="标题"
-          />
-
-          <div className="qn-editor-wrapper">
-            <EditorContent editor={editor} className="qn-editor-content" />
-          </div>
-
-          <div className="qn-toolbar">
-            <ToolbarBtn onClick={saveNote}>保存正文</ToolbarBtn>
-            <ToolbarBtn
-              onClick={() => delNote(activeNote.id)}
-              style={{ background: 'var(--error, #ef4444)' }}
-            >
-              删除
-            </ToolbarBtn>
-          </div>
+          ...
         </main>
       ) : (
         <main className="qn-empty">
